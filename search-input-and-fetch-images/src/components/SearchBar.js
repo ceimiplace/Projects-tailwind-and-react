@@ -1,16 +1,16 @@
 import React from "react";
 class SearchBar extends React.Component {
-  state = { term: "hi there" };
+  state = { term: "cars" };
   onSubmit = (e) => {
     e.preventDefault();
     this.props.submited(this.state.term);
   };
   render() {
     return (
-      <div className="flex justify-center">
+      <div className="searchBar">
         <form
           onSubmit={this.onSubmit}
-          className="w-10/12 p-3 border-black-700  shadow m-4 max-w-5xl"
+          className="  border-black-700  shadow p-3"
         >
           <label className="font-bold block mb-4">Image search</label>
           <input

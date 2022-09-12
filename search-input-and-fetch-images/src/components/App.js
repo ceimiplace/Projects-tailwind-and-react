@@ -1,9 +1,10 @@
 import React from "react";
 import axios from "axios";
 import SearchBar from "./SearchBar";
-
+import ItemsList from "./ItemList";
 class App extends React.Component {
-  async whenUserSubmitsForm(term) {
+  state = { images: [] };
+  whenUserSubmitsForm = async (term) => {
     console.log(term);
     const response = await axios.get(
       "https://api.unsplash.com/search/photos/",
@@ -15,12 +16,14 @@ class App extends React.Component {
         },
       }
     );
-    console.log(response);
-  }
+
+    this.setState({ images: response.data.results });
+  };
   render() {
     return (
-      <div className="App">
-        <SearchBar submited={this.whenUserSubmitsForm} />
+      <div className="App max-w-5xl flex  flex-col  p-3  mx-auto">
+        <SearchBar submited={this.whenUserSubmitsForm} god="is dedad" />
+        <ItemsList />
       </div>
     );
   }
