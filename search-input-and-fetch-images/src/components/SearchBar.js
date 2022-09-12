@@ -10,7 +10,7 @@ class SearchBar extends React.Component {
       <div className="searchBar">
         <form
           onSubmit={this.onSubmit}
-          className="  border-black-700  shadow p-3"
+          className=" border-black-700  shadow p-3"
         >
           <label className="font-bold block mb-4">Image search</label>
           <input
