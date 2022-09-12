@@ -4,7 +4,10 @@ class SearchBar extends React.Component {
   render() {
     return (
       <div className="flex justify-center">
-        <form className="w-10/12 p-3 border-black-700  shadow m-4 max-w-5xl">
+        <form
+          onSubmit={(e) => e.preventDefault()}
+          className="w-10/12 p-3 border-black-700  shadow m-4 max-w-5xl"
+        >
           <label className="font-bold block mb-4">Image search</label>
           <input
             type="text"
