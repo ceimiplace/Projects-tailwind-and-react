@@ -1,8 +1,9 @@
-import { useState } from "react"
+import { useState,useEffect } from "react"
 export default function Search(){
     
     const [term,setTerm] = useState("")
     console.log(term)
+    useEffect(()=>{console.log("JI")},[term])
     return <div className="search-container p-4">
         <form onSubmit={e=>e.preventDefault()} className="">
             <label className="font-bold">Enter search term</label>
