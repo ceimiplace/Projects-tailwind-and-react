@@ -22,7 +22,7 @@ class App extends React.Component {
   render() {
     return (
       <div className="App w-4/6 flex  flex-col  p-3  mx-auto">
-        <SearchBar submited={this.whenUserSubmitsForm} god="is dedad" />
+        <SearchBar submited={this.whenUserSubmitsForm}  />
         <ItemsList images={this.state.images} />
       </div>
     );

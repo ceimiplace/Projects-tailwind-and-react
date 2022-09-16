@@ -5,17 +5,12 @@ export default function Search(){
     const [term,setTerm] = useState("")
    const [results,setResults] = useState([])
     useEffect(()=>{
+        if(!term){return;}
         async function getData(){
-              const response = await axios.get("https://en.wikipedia.org/w/api.php",{
-                params:{
-                action : "query",
-                list: "search",
-                origin : "*",
-                format:"json",
-                
-                srsearch:term}
-            })
-            setResults(response.data.query.search)
+            const url = `https://en.wikipedia.org/w/api.php?action=query&list=search&origin=*&format=json&srsearch=${term}`
+            const response = await fetch(url)
+            const data = await response.json();                
+            setResults(data.query.search)
         }
       getData();
       
