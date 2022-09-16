@@ -2,10 +2,10 @@ import { useState,useEffect } from "react"
 import axios from "axios"
 export default function Search(){
     
-    const [term,setTerm] = useState("")
+    const [term,setTerm] = useState("dog")
    const [results,setResults] = useState([])
     useEffect(()=>{
-        if(!term){return;}
+        
         async function getData(){
             const url = `https://en.wikipedia.org/w/api.php?action=query&list=search&origin=*&format=json&srsearch=${term}`
             const response = await fetch(url)
@@ -13,7 +13,13 @@ export default function Search(){
             console.log(data)                
             setResults(data.query.search)
         }
-      getData();
+        if(term && results.length===0){getData() }else{
+            let timeoutId = setTimeout( getData, 500);
+            return ()=>{
+             clearTimeout(timeoutId)
+            }
+        }
+       
       
     },[term])
     function removeSpan(text){        
