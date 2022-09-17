@@ -1,16 +1,30 @@
+import { useState } from "react"
 export default function Translate(){
+    const [language,setLanguage] = useState("")
+    const [textToBeTranslated, setTextToBeTranslated] = useState("")
+    const [translation,setTranslation] = useState("")
      const token ="AIzaSyCHUCmpR7cT_yDFHC98CZJy2LTms-IwDlM"    
     const options = {
         method:"POST",
         headers: {"Content-Type": "application/json",
            },
         body:JSON.stringify({
-            q: "The Great Pyramid of Giza (also known as the Pyramid of Khufu or the Pyramid of Cheops) is the oldest and largest of the three pyramids in the Giza pyramid complex.",
-            source: "en",
+            q: textToBeTranslated,
+            source: language,
             target: "es",
             format: "text",
           })
     }
-    fetch(`https://translation.googleapis.com/language/translate/v2?key=${token}`,options).then(resp=>resp.json()).then(data=>console.log(data))
-    return <div>Hy</div>
+    //fetch(`https://translation.googleapis.com/language/translate/v2?key=${token}`,options).then(resp=>resp.json()).then(data=>console.log(data))
+    return <div className="flex items-center">
+            <div>
+                <label htmlFor="languages">Select a language:</label>
+                <select id="languages" >
+                    <option value="english">english</option>
+                    <option>french</option>
+                </select>
+                <textarea className="block" rows="6" cols="50" />
+            </div>
+            <p className=" ml-4 inline"></p>
+        </div>
 }
