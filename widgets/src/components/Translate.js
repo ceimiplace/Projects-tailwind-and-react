@@ -1,30 +1,39 @@
-import { useState } from "react"
-export default function Translate(){
+import { useState,useEffect } from "react"
+export default function Translate({languages}){
     const [language,setLanguage] = useState("")
-    const [textToBeTranslated, setTextToBeTranslated] = useState("")
+    const [textToBeTranslated, setTextToBeTranslated] = useState("Dummy text")
     const [translation,setTranslation] = useState("")
-     const token ="AIzaSyCHUCmpR7cT_yDFHC98CZJy2LTms-IwDlM"    
-    const options = {
-        method:"POST",
-        headers: {"Content-Type": "application/json",
-           },
-        body:JSON.stringify({
-            q: textToBeTranslated,
-            source: language,
-            target: "es",
-            format: "text",
-          })
-    }
-    //fetch(`https://translation.googleapis.com/language/translate/v2?key=${token}`,options).then(resp=>resp.json()).then(data=>console.log(data))
-    return <div className="flex items-center">
+    const optionsToRender = languages.map(elem=><option key={elem.value}  value={elem.value}>{elem.name}</option>)    
+    useEffect(()=>{
+        const token = "AIzaSyCHUCmpR7cT_yDFHC98CZJy2LTms-IwDlM"
+        const options = {
+            method:"POST",
+            headers: {"Content-Type": "application/json",
+               },
+            body:JSON.stringify({
+                q: textToBeTranslated,
+                source: language,
+                target: translation,
+                format: "text",
+              })
+        }
+        console.log(language)
+        async function handle(){
+         let response = await fetch(`https://translation.googleapis.com/language/translate/v2?key=${token}`,options)
+         let data = await response.json()
+         
+        }
+        handle();
+    },[language,textToBeTranslated,translation])
+   
+    return <div className="flex">
             <div>
-                <label htmlFor="languages">Select a language:</label>
-                <select id="languages" >
-                    <option value="english">english</option>
-                    <option>french</option>
-                </select>
-                <textarea className="block" rows="6" cols="50" />
+                <label htmlFor="languages">Select origin language:</label>
+                <select onChange={(event)=>setLanguage(event.target.value)} id="languages" >{optionsToRender}</select>
+                <textarea className="block" rows="6" cols="50" value={textToBeTranslated} onChange={(e)=>setTextToBeTranslated(e.target.value)}/>
             </div>
-            <p className=" ml-4 inline"></p>
+            <div><label>Select language to translate to :</label>
+            <select onChange={(event)=>{setTranslation(event.target.value)}}>{optionsToRender}</select></div>
+            
         </div>
 }
