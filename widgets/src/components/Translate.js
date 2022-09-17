@@ -40,7 +40,7 @@ export default function Translate({languages}){
                 <textarea className="block" rows="6" cols="50" value={textToBeTranslated} onChange={(e)=>setTextToBeTranslated(e.target.value)}/>
             </div>
             <div className="ml-4">
-                <label>Select language to translate to :</label>
+                <label>Select language to translate to: </label>
                 <select onChange={(event)=>{setTarget(event.target.value)}}>{optionsToRender}</select>
                 <p>{translation}</p>
             </div>
