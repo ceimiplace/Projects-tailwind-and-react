@@ -7,7 +7,7 @@ const items = [{title : "What is React?",content:"React is front-end javascript 
 const options = [{label:"The color Red" , value:"Red"},{label:"The color Blue",value:"Blue"}]
 function App() {
   return (
-    <div className="App">
+    <div className="App w-full h-full boder-red-200 border-2">
      {/* <Accordion items={items}/> */}
      {/* <Search/> */}
      <Dropdown options={options}/>
