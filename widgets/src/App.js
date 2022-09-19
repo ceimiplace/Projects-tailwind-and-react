@@ -4,6 +4,8 @@ import Search from "./components/Search";
 import Dropdown from "./components/Dropdown";
 import Translate from "./components/Translate";
 import Route from "./components/Rounter";
+import Headers from "./components/Header";
+import { useState } from "react";
 const items = [
   {
     title: "What is React?",
@@ -52,6 +54,7 @@ function App() {
   }
   return (
     <div className="App w-full h-full boder-red-200 border-2">
+      <Headers />
       <Route path="/">
         <Accordion items={items} />
       </Route>
@@ -59,17 +62,14 @@ function App() {
       <Route path="/search">
         <Search />
       </Route>
+
       <Route path="/dropdown">
         <Dropdown options={options} />
       </Route>
+
       <Route path="/translate">
         <Translate languages={languages} />
       </Route>
-
-      {/* <Accordion items={items}/> */}
-      {/* <Search/> */}
-      {/* <Dropdown options={options}/> */}
-      {/* <Translate languages={languages}/> */}
     </div>
   );
 }
