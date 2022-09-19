@@ -32,26 +32,6 @@ const languages = [
   { name: "Finnish", value: "fi" },
 ];
 function App() {
-  function showAccordion() {
-    if (window.location.pathname === "/") {
-      return <Accordion items={items} />;
-    }
-  }
-  function showSearch() {
-    if (window.location.pathname === "/search") {
-      return <Search />;
-    }
-  }
-  function showDropdown() {
-    if (window.location.pathname === "/dropdown") {
-      return <Dropdown options={options} />;
-    }
-  }
-  function showTranslate() {
-    if (window.location.pathname === "/translate") {
-      return <Translate languages={languages} />;
-    }
-  }
   return (
     <div className="App w-full h-full boder-red-200 border-2">
       <Headers />
