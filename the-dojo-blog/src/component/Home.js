@@ -1,4 +1,5 @@
 import { useState } from "react";
+import Bloglist from "./BlogList";
 export default function Home() {
   const blogs = [
     {
@@ -14,21 +15,19 @@ export default function Home() {
       id: 2,
     },
   ];
-  const [message, setMessage] = useState("Click me");
-  const [blogList, setBlogList] = useState(blogs);
-
-  let listBlogs = blogList.map((elem) => (
-    <div className="hover:shadow-md mb-4" key={elem.id}>
-      <h1 className="text-xl font-medium text-rose-500">{elem.title}</h1>
-      <p>Written by {elem.author}</p>
-    </div>
-  ));
-  function handleClick() {
-    setMessage("Well Well hi there");
+  const [showBlogs, setShowBlogs] = useState(blogs);
+  function newBlogs(id) {
+    let newBlogs = showBlogs.filter((item) => item.id !== id);
+    setShowBlogs(newBlogs);
   }
+
   return (
     <div>
-      <div className="blog-container">{listBlogs}</div>
+      <Bloglist
+        blogList={showBlogs}
+        title={"All blogs"}
+        deleteBlogs={newBlogs}
+      />
     </div>
   );
 }
