@@ -1,7 +1,12 @@
-import "./App.css";
-
+import Navbar from "./component/Navbar";
+import Home from "./component/Home";
 function App() {
-  return <div className="App"></div>;
+  return (
+    <div className="App mx-auto max-w-2xl ">
+      <Navbar />
+      <Home />
+    </div>
+  );
 }
 
 export default App;
