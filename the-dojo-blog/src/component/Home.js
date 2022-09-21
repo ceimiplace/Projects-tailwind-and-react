@@ -12,6 +12,9 @@ export default function Home() {
         let responsePlaceholder = await fetch(
           "https://jsonplaceholder.typicode.com/comments/?_limit=15"
         );
+        if (!responsePlaceholder.ok) {
+          throw Error("something went wrong with fetching data");
+        }
         let dataPlaceholder = await responsePlaceholder.json();
         let newDataPlaceholder = dataPlaceholder.map((elem) => {
           return {
@@ -23,6 +26,9 @@ export default function Home() {
         let responseNames = await fetch(
           "https://randomuser.me/api/?results=15"
         );
+        if (!responseNames.ok) {
+          throw Error("something went wrong with fetching names");
+        }
         let dataNames = await responseNames.json();
         let newNames = dataNames.results.map((elem, index) => {
           const { title, first, last } = elem.name;
