@@ -1,33 +1,48 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Bloglist from "./BlogList";
 export default function Home() {
-  const blogs = [
-    {
-      title: "How are we doing today?",
-      body: "How are people doing today?",
-      author: "Dennis D.",
-      id: 1,
-    },
-    {
-      title: "How are we doing yesterday?",
-      body: "How are people doing yesterday?",
-      author: "Bianca B.",
-      id: 2,
-    },
-  ];
-  const [showBlogs, setShowBlogs] = useState(blogs);
-  function newBlogs(id) {
-    let newBlogs = showBlogs.filter((item) => item.id !== id);
-    setShowBlogs(newBlogs);
-  }
+  const [showBlogs, setShowBlogs] = useState([]);
+  //Will make a fetch request that gets info names on every render of the user
+
+  useEffect(() => {
+    async function getData() {
+      let responsePlaceholder = await fetch(
+        "https://jsonplaceholder.typicode.com/comments/?_limit=15"
+      );
+      let dataPlaceholder = await responsePlaceholder.json();
+      let newDataPlaceholder = dataPlaceholder.map((elem) => {
+        return {
+          body: elem.body,
+          id: elem.id,
+        };
+      });
+
+      let responseNames = await fetch("https://randomuser.me/api/?results=15");
+      let dataNames = await responseNames.json();
+      let newNames = dataNames.results.map((elem, index) => {
+        const { title, first, last } = elem.name;
+        const { large, medium, thumbnail } = elem.picture;
+        return {
+          title,
+          first,
+          last,
+          large,
+          medium,
+          thumbnail,
+
+          ...newDataPlaceholder[index],
+        };
+      });
+      console.log(newNames);
+      setShowBlogs(newNames);
+    }
+
+    getData();
+  }, []);
 
   return (
     <div>
-      <Bloglist
-        blogList={showBlogs}
-        title={"All blogs"}
-        deleteBlogs={newBlogs}
-      />
+      <Bloglist blogList={showBlogs} title={"All blogs"} />
     </div>
   );
 }
