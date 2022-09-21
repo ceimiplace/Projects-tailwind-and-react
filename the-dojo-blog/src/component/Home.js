@@ -1,7 +1,9 @@
 import { useState, useEffect } from "react";
 import Bloglist from "./BlogList";
+import Loading from "./Loading";
 export default function Home() {
   const [showBlogs, setShowBlogs] = useState([]);
+  const [showLoading, setShowLoading] = useState(true);
   //Will make a fetch request that gets info names on every render of the user
 
   useEffect(() => {
@@ -34,6 +36,7 @@ export default function Home() {
         };
       });
       console.log(newNames);
+      setShowLoading(false);
       setShowBlogs(newNames);
     }
 
@@ -42,6 +45,7 @@ export default function Home() {
 
   return (
     <div>
+      {showLoading && <Loading />}
       <Bloglist blogList={showBlogs} title={"All blogs"} />
     </div>
   );
