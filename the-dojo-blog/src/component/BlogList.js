@@ -13,7 +13,7 @@ export default function Bloglist({ blogList, title }) {
           </p>
         </div>
 
-        <p className="font-medium">{elem.title}...</p>
+        <p className=" text-xl">"{elem.title}..."</p>
       </div>
     </Link>
   ));
