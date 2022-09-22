@@ -2,18 +2,18 @@ import { Link } from "react-router-dom";
 export default function Bloglist({ blogList, title }) {
   let listBlogs = blogList.map((elem) => (
     <Link to={`/blogs/${elem.id}`}>
-      <div className="p-2 hover:shadow-xl mb-4" key={elem.id}>
-        <div className="flex items-center gap-2">
-          <img className="" src={elem.medium} />
+      <div className="p-2 flex  items-start hover:shadow-xl mb-4" key={elem.id}>
+        <div className="flex flex-col items-start gap-2">
+          <img className="h-20" src={elem.picture} />
           <p>
             Written by
             <span className="text-xl ml-2 font-medium text-rose-500">
-              {`${elem.first} ${elem.last}`}
+              {`${elem.firstName} ${elem.lastName}`}
             </span>
           </p>
         </div>
 
-        <p className="">{elem.body}</p>
+        <p className="font-medium">{elem.title}...</p>
       </div>
     </Link>
   ));
