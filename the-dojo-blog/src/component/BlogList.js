@@ -14,9 +14,12 @@ export default function Bloglist({ blogList, title }) {
       <h1 className="">{elem.body}</h1>
     </div>
   ));
+  console.log(blogList);
   return (
     <div>
-      <div className="text-3xl my-4">{title}</div>
+      {blogList.length > 1 ? (
+        <div className="text-3xl my-4">{title}</div>
+      ) : null}
       <div className="blog-container">{listBlogs}</div>
     </div>
   );

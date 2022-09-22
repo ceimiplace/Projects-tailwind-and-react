@@ -4,6 +4,7 @@ import Loading from "./Loading";
 export default function Home() {
   const [showBlogs, setShowBlogs] = useState([]);
   const [showLoading, setShowLoading] = useState(true);
+  const [error, setError] = useState(null);
   //Will make a fetch request that gets info names on every render of the user
 
   useEffect(() => {
@@ -45,10 +46,12 @@ export default function Home() {
           };
         });
         console.log(newNames);
+        setError(null);
         setShowLoading(false);
         setShowBlogs(newNames);
       } catch (err) {
-        console.log(err);
+        setError(err.message);
+        setShowLoading(false);
       }
     }
 
@@ -57,6 +60,7 @@ export default function Home() {
 
   return (
     <div>
+      {error && <div>{error}</div>}
       {showLoading && <Loading />}
       <Bloglist blogList={showBlogs} title={"All blogs"} />
     </div>
