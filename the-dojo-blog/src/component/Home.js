@@ -8,10 +8,12 @@ export default function Home() {
   //Will make a fetch request that gets info names on every render of the user
 
   useEffect(() => {
+    const abortCtr = new AbortController();
     async function getData() {
       try {
         let responsePlaceholder = await fetch(
-          "https://jsonplaceholder.typicode.com/comments/?_limit=15"
+          "https://jsonplaceholder.typicode.com/comments/?_limit=15",
+          { signal: abortCtr.signal }
         );
         if (!responsePlaceholder.ok) {
           throw Error("something went wrong with fetching data");
@@ -56,6 +58,9 @@ export default function Home() {
     }
 
     getData();
+    return () => {
+      abortCtr.abort();
+    };
   }, []);
 
   return (
