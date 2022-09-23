@@ -15,10 +15,10 @@ export default function App2() {
               <Home />
             </Route>
             <Route>
-              <FullBlogDetails exact path="/blogs/:id" />
+              <CreateBlog path="/create" />
             </Route>
             <Route>
-              <CreateBlog exact path="/create" />
+              <FullBlogDetails path="/blogs/:id" />
             </Route>
           </Switch>
         </MainContainer>
