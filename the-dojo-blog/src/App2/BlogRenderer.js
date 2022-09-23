@@ -1,7 +1,7 @@
 import BlogPreview from "./BlogPreview";
-export default function BlogRenderer({ blogsToDisplay }) {
+export default function BlogRenderer({ blogsToDisplay, message }) {
   if (blogsToDisplay.length < 1) {
-    return <div>Sorry,no blogs to display right now</div>;
+    return;
   }
   let blogsList = blogsToDisplay.map((blog) => {
     return (
@@ -14,5 +14,10 @@ export default function BlogRenderer({ blogsToDisplay }) {
       />
     );
   });
-  return <div>{blogsList}</div>;
+  return (
+    <>
+      <div className="text-2xl font-medium text-rose-500">{message}</div>
+      <div>{blogsList}</div>
+    </>
+  );
 }

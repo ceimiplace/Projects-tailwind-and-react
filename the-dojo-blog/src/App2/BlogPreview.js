@@ -7,7 +7,10 @@ export default function BlogPreview({
   body,
 }) {
   return (
-    <div key={id} className="p-4 flex items-center hover:shadow-lg my-6">
+    <div
+      key={id}
+      className="p-4 flex border-2 border-grey-200 items-center hover:shadow-lg my-6"
+    >
       <div>
         <img className="h-20" src={picture} />
         <p className="">
