@@ -1,13 +1,16 @@
 import Navigation from "./Navigation";
 import Home from "./Home";
 import MainContainer from "./MainContentContainer";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import CreateBlog from "./CreateBlog";
+import FullBlogDetails from "./FullBlogDetails.js";
 export default function App2() {
   return (
-    <Router>
+    <BrowserRouter>
       <div className="flex  border-2 border-grey flex-col max-w-4xl min-h-screen mx-auto">
         <Navigation />
         <MainContainer>
-          <Switch>
+          <Routes>
             <Route exact path="/">
               <Home />
             </Route>
@@ -17,9 +20,9 @@ export default function App2() {
             <Route>
               <FullBlogDetails path="/blogs/:id" />
             </Route>
-          </Switch>
+          </Routes>
         </MainContainer>
       </div>
-    </Router>
+    </BrowserRouter>
   );
 }
