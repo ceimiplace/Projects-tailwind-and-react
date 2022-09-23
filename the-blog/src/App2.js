@@ -14,9 +14,6 @@ export default function App2() {
             <Route path="/" element={<Home />} />
             <Route path="/create" element={<CreateBlog />} />
             <Route path="/blogs/:id" element={<FullBlogDetails />} />
-            {/* <Route>
-              <FullBlogDetails path="/blogs/:id" />
-            </Route> */}
           </Routes>
         </MainContainer>
       </div>
