@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import BlogRenderer from "./BlogRenderer";
+import Loader from "./Loader";
 export default function Home() {
   const [blogsToDisplay, setBlogsToDisplay] = useState([]);
   useEffect(() => {
@@ -10,6 +11,7 @@ export default function Home() {
   return (
     <div>
       <h2>All blogs</h2>
+      <Loader />
       <BlogRenderer blogsToDisplay={blogsToDisplay} />
     </div>
   );
