@@ -11,15 +11,12 @@ export default function App2() {
         <Navigation />
         <MainContainer>
           <Routes>
-            <Route exact path="/">
-              <Home />
-            </Route>
-            <Route>
-              <CreateBlog path="/create" />
-            </Route>
-            <Route>
+            <Route path="/" element={<Home />} />
+            <Route path="/create" element={<CreateBlog />} />
+            <Route path="/blogs/:id" element={<FullBlogDetails />} />
+            {/* <Route>
               <FullBlogDetails path="/blogs/:id" />
-            </Route>
+            </Route> */}
           </Routes>
         </MainContainer>
       </div>
