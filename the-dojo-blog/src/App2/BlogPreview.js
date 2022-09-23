@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom";
+
 export default function BlogPreview({
   id,
   firstName,
@@ -7,7 +9,8 @@ export default function BlogPreview({
   body,
 }) {
   return (
-    <div
+    <Link
+      to={`/blogs/${id}`}
       key={id}
       className="p-4 flex border-2 border-grey-200 items-center hover:shadow-lg my-6"
     >
@@ -21,6 +24,6 @@ export default function BlogPreview({
         </p>
       </div>
       <p className="font-bold">"{title}..."</p>
-    </div>
+    </Link>
   );
 }
