@@ -7,7 +7,7 @@ import FullBlogDetails from "./FullBlogDetails.js";
 export default function App2() {
   return (
     <BrowserRouter>
-      <div className="flex  border-2 border-grey flex-col max-w-4xl min-h-screen mx-auto">
+      <div className="min-h-screen flex flex-col max-w-4xl  mx-auto">
         <Navigation />
         <MainContainer>
           <Routes>

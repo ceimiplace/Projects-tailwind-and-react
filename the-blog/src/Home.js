@@ -19,11 +19,11 @@ export default function Home() {
       });
   }, []);
   return (
-    <div className=" py-4">
+    <>
       {error && <div>{error}</div>}
       {loading && <Loader />}
 
       <BlogRenderer blogsToDisplay={blogsToDisplay} message={"All Blogs"} />
-    </div>
+    </>
   );
 }
