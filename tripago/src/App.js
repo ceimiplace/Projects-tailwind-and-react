@@ -2,9 +2,8 @@ import Triplist from "./components/Triplist";
 
 function App() {
   return (
-    <div className="App">
+    <div className="">
       <Triplist />
-      <div>hy</div>
     </div>
   );
 }
