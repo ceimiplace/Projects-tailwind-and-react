@@ -7,7 +7,12 @@ class ItemsList extends React.Component {
     return (
       <div className="columns-2xs xl:columns-sm">
         {this.props.images.map((image) => (
-          <img src={image.urls.regular} key={image.id} className="m-2" />
+          <img
+            src={image.urls.regular}
+            key={image.id}
+            className="m-2"
+            alt="image"
+          />
         ))}
       </div>
     );
