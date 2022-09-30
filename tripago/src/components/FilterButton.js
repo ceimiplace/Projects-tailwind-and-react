@@ -1,14 +1,10 @@
-export default function FilterButton({ text, filteree, sendDataUp, data }) {
+export default function FilterButton({ filter, handleClick, children }) {
   return (
     <button
-      className="w-20 border-black border-2"
-      onClick={() => {
-        console.log(data);
-        let newData = data.filter((eleme) => eleme.loc === filteree);
-        sendDataUp(newData);
-      }}
+      className="w-20 h-20 border-black border-2"
+      onClick={() => handleClick(filter)}
     >
-      {text} Trips
+      {children}
     </button>
   );
 }
