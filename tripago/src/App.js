@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import FilterButton from "./components/FilterButton";
+import FilterNav from "./components/FilterNav";
 import Triplist from "./components/Triplist";
 
 function App() {
@@ -26,19 +27,8 @@ function App() {
     filterFetch();
   }, []);
   return (
-    <div className="">
-      <FilterButton handleClick={filterFetch} filter="europe">
-        Europe trips
-      </FilterButton>
-      <FilterButton handleClick={filterFetch} filter="america">
-        Trips in america
-      </FilterButton>
-      <FilterButton handleClick={filterFetch} filter="france">
-        Trips in france
-      </FilterButton>
-      <FilterButton handleClick={filterFetch} filter="">
-        Reset
-      </FilterButton>
+    <div className="max-w-3xl mx-auto p-4">
+      <FilterNav filterFetch={filterFetch} />
       <Triplist lists={data} />
     </div>
   );

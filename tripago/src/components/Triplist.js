@@ -1,7 +1,7 @@
 export default function Triplist({ lists }) {
   return (
     lists && (
-      <div className="max-w-lg mx-auto my-2">
+      <div className=" my-2">
         <h2 className="text-3xl font-medium">Trip list</h2>
         <ul className=" ">
           {lists.map((elem) => {
