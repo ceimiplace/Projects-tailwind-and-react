@@ -7,10 +7,17 @@ export default function FullBlogDetails() {
   const [error, setError] = useState(null);
   const { id } = useParams();
   useEffect(() => {
-    fetch("http://localhost:8000/posts")
+    fetch("https://api.jsonbin.io/v3/b/63373e2660c92b271df634cb", {
+      method: "GET",
+      headers: {
+        "Conten-type": "application/json",
+        "X-Master-Key":
+          "$2b$10$doR7B.7fbc0i1PieOgswOOl/ekMCLujXbfgUJ/G/AD.jscgMa5v2G",
+      },
+    })
       .then((resp) => resp.json())
       .then((data) => {
-        let result = data.find((elem) => elem.id == id);
+        let result = data.record.posts.find((elem) => elem.id == id);
         setError(false);
         setBlog(result);
         setLoading(false);
@@ -36,7 +43,7 @@ export default function FullBlogDetails() {
             <p className="">
               Written by{" "}
               <span className="text-rose-500 font-bold text-lg">
-                {blog.firstName + " " + blog.lastName}
+                {blog.name}
               </span>
             </p>
           </div>

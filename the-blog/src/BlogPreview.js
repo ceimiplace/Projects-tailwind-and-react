@@ -1,12 +1,5 @@
 import { Link } from "react-router-dom";
-export default function BlogPreview({
-  id,
-  firstName,
-  lastName,
-  picture,
-  title,
-  body,
-}) {
+export default function BlogPreview({ id, name, picture, title, body }) {
   return (
     <Link
       to={`/blogs/${id}`}
@@ -17,9 +10,7 @@ export default function BlogPreview({
         <img className="h-20" src={picture} />
         <p className="">
           Written by{" "}
-          <span className="text-rose-500 font-bold text-lg">
-            {firstName + " " + lastName}
-          </span>
+          <span className="text-rose-500 font-bold text-lg">{name}</span>
         </p>
       </div>
       <p className="font-bold">"{title}..."</p>
