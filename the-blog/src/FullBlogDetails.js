@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
+import { projectFirestore } from "./firebase/config";
 import Loader from "./Loader";
 export default function FullBlogDetails() {
   const [blog, setBlog] = useState("");
@@ -7,24 +8,19 @@ export default function FullBlogDetails() {
   const [error, setError] = useState(null);
   const { id } = useParams();
   useEffect(() => {
-    fetch("https://api.jsonbin.io/v3/b/63373e2660c92b271df634cb", {
-      method: "GET",
-      headers: {
-        "Conten-type": "application/json",
-        "X-Master-Key":
-          "$2b$10$doR7B.7fbc0i1PieOgswOOl/ekMCLujXbfgUJ/G/AD.jscgMa5v2G",
-      },
-    })
-      .then((resp) => resp.json())
-      .then((data) => {
-        let result = data.record.posts.find((elem) => elem.id == id);
-        setError(false);
-        setBlog(result);
-        setLoading(false);
-      })
-      .catch((err) => {
-        setError(err.message);
-        setLoading(false);
+    projectFirestore
+      .collection("recipies")
+      .doc(id)
+      .get()
+      .then((resp) => {
+        if (resp.exists) {
+          console.log(resp);
+          setLoading(false);
+          setBlog({ id: resp.id, ...resp.data() });
+        } else {
+          setLoading(false);
+          setError("Cound not fetch the recipe");
+        }
       });
   }, []);
 

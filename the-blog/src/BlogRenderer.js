@@ -6,6 +6,7 @@ export default function BlogRenderer({ blogsToDisplay, message }) {
       return (
         <BlogPreview
           id={blog.id}
+          key={blog.id}
           title={blog.title}
           name={blog.name}
           picture={blog.picture}
