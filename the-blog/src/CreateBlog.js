@@ -43,7 +43,7 @@ export default function CreateBlog() {
           <button
             onClick={() => {
               fetch("https://api.jsonbin.io/v3/b/63373e2660c92b271df634cb", {
-                method: "Put",
+                method: "PUT",
                 headers: {
                   "Content-Type": "application/json",
                   "X-Master-Key":
