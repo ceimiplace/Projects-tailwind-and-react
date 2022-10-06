@@ -1,21 +1,25 @@
 import { useState, useEffect } from "react";
 import BlogRenderer from "./BlogRenderer";
 import Loader from "./Loader";
+import { projectFirestore } from "./firebase/config";
 export default function Home() {
   const [blogsToDisplay, setBlogsToDisplay] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   useEffect(() => {
-    fetch("http://localhost:8000/posts")
-      .then((resp) => resp.json())
-      .then((data) => {
+    let results = [];
+    projectFirestore
+      .collection("recipies")
+      .get()
+      .then((snapshot) => {
+        snapshot.docs.forEach((elem) =>
+          results.push({ id: elem.id, ...elem.data() })
+        );
         setLoading(false);
-        setError(null);
-        setBlogsToDisplay(data);
+        setBlogsToDisplay(results.reverse());
       })
-      .catch((err) => {
-        setError(err.message);
-        setLoading(false);
+      .catch((error) => {
+        setError(error.message);
       });
   }, []);
   return (
