@@ -17,7 +17,7 @@ export default function BlogRenderer({ blogsToDisplay, message }) {
   return (
     <>
       <div className="text-2xl font-medium text-rose-500">{message}</div>
-      <div>{blogsList}</div>
+      <div>{blogsList.reverse()}</div>
     </>
   );
 }

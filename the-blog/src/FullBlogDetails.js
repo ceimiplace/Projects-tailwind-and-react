@@ -29,13 +29,13 @@ export default function FullBlogDetails() {
       {blog && (
         <div
           key={blog.id}
-          className="p-2 flex gap-4 border-2 border-grey-200  hover:shadow-lg my-6"
+          className="p-2 flex gap-6 border-2 border-grey-200  hover:shadow-lg my-6"
         >
           <div className="shrink-0 w-20 ">
             <img className="" src={blog.picture} />
             <p className="">
               Written by{" "}
-              <span className="text-rose-500 font-bold text-lg">
+              <span className="text-rose-500 font-medium text-lg">
                 {blog.firstName + " " + blog.lastName}
               </span>
             </p>
