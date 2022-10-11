@@ -1,12 +1,8 @@
-import React from "react";
-class ItemsList extends React.Component {
-  constructor(props) {
-    super(props);
-  }
-  render() {
-    return (
+export default function ItemsList({ images }) {
+  return (
+    images && (
       <div className="columns-2xs xl:columns-sm">
-        {this.props.images.map((image) => (
+        {images.map((image) => (
           <img
             src={image.urls.regular}
             key={image.id}
@@ -15,7 +11,6 @@ class ItemsList extends React.Component {
           />
         ))}
       </div>
-    );
-  }
+    )
+  );
 }
-export default ItemsList;
