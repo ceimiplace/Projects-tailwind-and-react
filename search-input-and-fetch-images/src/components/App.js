@@ -1,6 +1,8 @@
 import SearchBar from "./SearchBar";
 import ItemsList from "./ItemList";
 import { useEffect, useState } from "react";
+import Button from "./Button";
+import Loader from "./Loader";
 
 export default function UnsplashAPI({ changenavi }) {
   const [images, setImages] = useState([]);
@@ -23,7 +25,6 @@ export default function UnsplashAPI({ changenavi }) {
   }, [term, page]);
   console.log(page);
   useEffect(() => {
-    console.log(term);
     fetch(`https://api.unsplash.com/search/photos?query=${term}`, {
       method: "GET",
       headers: {
@@ -35,22 +36,20 @@ export default function UnsplashAPI({ changenavi }) {
       .then((dates) => setImages(dates.results));
   }, [term]);
   return (
-    <div className="grow w-4/6 flex flex-col  p-3 bg-rose-200 mx-auto">
-      <SearchBar submited={setTerm} initialTerm={term} />
-      <ItemsList images={images} />
-      <div className="flex justify-center gap-4">
-        <div
-          onClick={() => setPage((prev) => prev - 1)}
-          className="border-2 border-black p-4 text-lg rounded"
-        >
-          Previous page
-        </div>
-        <div
-          onClick={() => setPage((prev) => prev + 1)}
-          className="border-2 border-black p-4 text-lg rounded"
-        >
-          Next page
-        </div>
+    <div className="grow w-4/6 flex flex-col  p-3 bg-rose-200 mx-auto min-h-screen">
+      <header>
+        <SearchBar submited={setTerm} initialTerm={term} />
+      </header>
+      <main className="grow">
+        {images ? <ItemsList images={images} /> : <Loader />}
+      </main>
+      <div className="flex justify-center gap-4 mt-4">
+        <Button setPage={setPage} whichPageToSet={page - 1}>
+          Previous page{" "}
+        </Button>
+        <Button setPage={setPage} whichPageToSet={page + 1}>
+          Next Page
+        </Button>
       </div>
     </div>
   );
