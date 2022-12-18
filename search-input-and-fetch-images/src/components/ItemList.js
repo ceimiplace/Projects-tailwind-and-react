@@ -6,7 +6,7 @@ export default function ItemsList({ images }) {
           src={image.urls.regular}
           key={image.id}
           className="m-2"
-          alt="image"
+          alt="image resulted from search"
         />
       ))}
     </div>
