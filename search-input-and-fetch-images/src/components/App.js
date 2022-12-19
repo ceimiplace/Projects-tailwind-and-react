@@ -27,7 +27,7 @@ export default function UnsplashAPI({ changenavi }) {
   }, [term, page]);
 
   return (
-    <div className="grow w-4/6 flex flex-col  p-3 bg-rose-200 mx-auto min-h-screen">
+    <div className="grow px-4 flex flex-col  p-3 bg-rose-300 mx-auto min-h-screen">
       <header>
         <SearchBar submited={setTerm} initialTerm={term} />
       </header>
