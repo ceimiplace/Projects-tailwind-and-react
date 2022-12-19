@@ -6,10 +6,12 @@ import Loader from "./Loader";
 import "./Main.css";
 export default function UnsplashAPI({ changenavi }) {
   const [showLoader, setShowLoader] = useState(true);
+  const [errorMessage, setErrorMessage] = useState(null);
   const [images, setImages] = useState([]);
   const [term, setTerm] = useState("cats");
   const [page, setPage] = useState(1);
   useEffect(() => {
+    setErrorMessage(null);
     setShowLoader(true);
     setImages([]);
     fetch(`https://api.unsplash.com/search/photos?query=${term}&page=${page}`, {
@@ -21,8 +23,13 @@ export default function UnsplashAPI({ changenavi }) {
     })
       .then((resp) => resp.json())
       .then((dates) => {
+        setErrorMessage(null);
         setImages(dates.results);
         setShowLoader(false);
+      })
+      .catch((error) => {
+        setShowLoader(false);
+        setErrorMessage(error.message);
       });
   }, [term, page]);
 
@@ -40,6 +47,7 @@ export default function UnsplashAPI({ changenavi }) {
         </Button>
       </div>
       <main className="main-component">
+        {errorMessage && <div>{errorMessage}</div>}
         {showLoader && <Loader />}
         {images && <ItemsList images={images} />}
       </main>
