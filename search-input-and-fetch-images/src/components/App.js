@@ -3,7 +3,7 @@ import ItemsList from "./ItemList";
 import { useEffect, useState } from "react";
 import Button from "./Button";
 import Loader from "./Loader";
-
+import "./Main.css";
 export default function UnsplashAPI({ changenavi }) {
   const [showLoader, setShowLoader] = useState(true);
   const [images, setImages] = useState([]);
@@ -27,19 +27,19 @@ export default function UnsplashAPI({ changenavi }) {
   }, [term, page]);
 
   return (
-    <div className="grow px-4 flex flex-col  p-3 bg-rose-300 mx-auto min-h-screen">
+    <div className=" px-4 flex flex-col  p-3 bg-rose-300  min-h-screen">
       <header>
         <SearchBar submited={setTerm} initialTerm={term} />
       </header>
-      <main className="grow">
-        <div className="flex justify-center gap-4 my-4">
-          <Button setPage={setPage} whichPageToSet={page - 1}>
-            Previous page
-          </Button>
-          <Button setPage={setPage} whichPageToSet={page + 1}>
-            Next Page
-          </Button>
-        </div>
+      <div className="flex justify-center gap-4 my-4">
+        <Button setPage={setPage} whichPageToSet={page - 1}>
+          Previous page
+        </Button>
+        <Button setPage={setPage} whichPageToSet={page + 1}>
+          Next Page
+        </Button>
+      </div>
+      <main className="main-component">
         {showLoader && <Loader />}
         {images && <ItemsList images={images} />}
       </main>
